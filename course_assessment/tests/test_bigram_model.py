@@ -14,7 +14,6 @@ from course_assessment.language_model.bigram_model import (
     format_sentence_report,
 )
 
-# The five sentences of the Section 5 lecture, already lowercased and tokenized.
 LECTURE_SENTENCES = [
     ["i", "love", "machine", "learning"],
     ["i", "love", "natural", "language", "processing"],
@@ -34,7 +33,7 @@ def test_unigram_and_context_counts(lecture_model):
     assert lecture_model.word_counts["machine"] == 3
     assert lecture_model.context_counts["i"] == 3
     assert lecture_model.context_counts[START_TOKEN] == 5
-    assert lecture_model.context_counts[END_TOKEN] == 0  # </s> is never a context
+    assert lecture_model.context_counts[END_TOKEN] == 0
 
 
 def test_bigram_counts_and_sentence_boundaries(lecture_model):
@@ -45,7 +44,7 @@ def test_bigram_counts_and_sentence_boundaries(lecture_model):
 
 
 def test_vocabulary_size_matches_lecture(lecture_model):
-    assert lecture_model.vocabulary_size == 12  # value printed in the lecture notebook
+    assert lecture_model.vocabulary_size == 12
 
 
 def test_laplace_smoothing_formula(lecture_model):
@@ -54,7 +53,7 @@ def test_laplace_smoothing_formula(lecture_model):
     assert step["numerator"] == 4 and step["denominator"] == 17
     assert step["probability"] == pytest.approx(4 / 17)
     unseen = lecture_model.conditional_probability("love", "study")
-    assert unseen["probability"] == pytest.approx(1 / (2 + 12))  # smoothing: never zero
+    assert unseen["probability"] == pytest.approx(1 / (2 + 12))
 
 
 @pytest.mark.parametrize(
@@ -70,7 +69,7 @@ def test_probability_is_product_of_conditionals_and_log_sum(lecture_model):
     assert result["probability"] == pytest.approx(product, rel=1e-12)
     assert result["probability_from_log"] == pytest.approx(product, rel=1e-9)
     assert result["log_probability"] == pytest.approx(math.log(product))
-    assert len(result["steps"]) == len(LECTURE_SENTENCES[0]) + 1  # n words -> n+1 transitions
+    assert len(result["steps"]) == len(LECTURE_SENTENCES[0]) + 1
 
 
 def test_probabilities_between_zero_and_one(lecture_model):
@@ -82,7 +81,7 @@ def test_probabilities_between_zero_and_one(lecture_model):
 
 def test_conditional_distribution_sums_to_one():
     model = BigramLanguageModel().fit(LECTURE_SENTENCES)
-    candidates = model.vocabulary  # every word that can follow (includes </s> and <UNK>)
+    candidates = model.vocabulary
     for context in (START_TOKEN, "machine", "learning", "is"):
         total = sum(model.conditional_probability(context, w)["probability"] for w in candidates)
         assert total == pytest.approx(1.0)
@@ -94,7 +93,6 @@ def test_unseen_word_handling():
     result = model.sentence_probability(["i", "zzzz"])
     assert result["unseen_words_replaced"] == ["zzzz"]
     assert result["padded_sentence"] == [START_TOKEN, "i", UNKNOWN_TOKEN, END_TOKEN]
-    # C(<UNK>) = 0 -> P(</s> | <UNK>) = 1 / V
     assert result["steps"][-1]["probability"] == pytest.approx(1 / 13)
 
 
@@ -130,7 +128,6 @@ def test_report_text_contains_every_displayed_number(lecture_model):
     assert f"{result['probability']:.10e}" in text
 
 
-# ---- tests on the real dataset results (skipped when the dataset or outputs are absent) ----
 RESULT_FILE = ROOT / "outputs" / "sentence_probability_results.json"
 
 
@@ -151,11 +148,11 @@ def test_selected_sentences_are_actual_dataset_records_and_results_match_a_fresh
     heldout_by_row = {r["row_id"]: r for r in heldout}
     train_texts = {r["text"] for r in train}
     for fresh_item, saved_item in zip(fresh["sentences"], saved["sentences"], strict=True):
-        record = heldout_by_row[saved_item["row_id"]]  # KeyError if not a held-out record
+        record = heldout_by_row[saved_item["row_id"]]
         assert record["text"] == saved_item["original_message"]
         assert record["label"] == saved_item["label"]
         assert saved_item["sentence"] in saved_item["original_message"].lower()
-        assert saved_item["original_message"] not in train_texts  # never used for training
+        assert saved_item["original_message"] not in train_texts
         assert fresh_item["calculation"]["probability"] == saved_item["calculation"]["probability"]
         steps = saved_item["calculation"]["steps"]
         assert all(0 < s["probability"] < 1 for s in steps)

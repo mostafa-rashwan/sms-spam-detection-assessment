@@ -44,8 +44,6 @@ def test_porter_stemming_matches_lecture_examples():
 def test_full_pipeline_output_type_and_value():
     result = tp.normalize_message("WIN a FREE prize now! Call 09061701461. Thanks.")
     assert isinstance(result, list) and all(isinstance(s, list) for s in result)
-    # Punkt splits after "now!" but not after "09061701461." because the next word is lowercase
-    # (the message was lowercased first, as the assessment order requires).
     assert result == [["win", "free", "prize"], ["call", "thank"]]
 
 
@@ -94,7 +92,7 @@ def test_loader_cleaning_and_split(tmp_path):
     train_b, test_b = split_records(records, 0.2, 7)
     assert test_a == test_b and len(test_a) == 10
     assert {r["row_id"] for r in train_a}.isdisjoint({r["row_id"] for r in test_a})
-    assert sum(r["label"] == "spam" for r in test_a) == 2  # stratified
+    assert sum(r["label"] == "spam" for r in test_a) == 2
 
 
 def test_loader_rejects_label_conflict(tmp_path):
