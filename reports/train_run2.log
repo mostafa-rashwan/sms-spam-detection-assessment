@@ -1,0 +1,25 @@
+2026-11-06 17:38:16,745 INFO spamdetect.data: Parsed 5574 rows from C:\Users\Dev-Mustafa\Backend-Projects\SMS-Spam-Detection\data\raw\SMSSpamCollection
+2026-11-06 17:38:16,754 INFO spamdetect.data: Cleaning: {'rows_in': 5574, 'empty_dropped': 0, 'duplicates_dropped': 414, 'rows_out': 5160, 'spam': 642, 'ham': 4518}
+2026-11-06 17:38:31,948 INFO __main__: multinomial_nb: OOF recall=0.9455 fpr=0.0042 params={'clf__alpha': 0.05, 'features__word__min_df': 1}
+2026-11-06 17:38:43,535 INFO __main__: complement_nb: OOF recall=0.9455 fpr=0.0042 params={'clf__alpha': 0.05, 'features__word__min_df': 1}
+2026-11-06 17:38:54,768 INFO __main__: logreg: OOF recall=0.9514 fpr=0.0050 params={'clf__C': 30.0, 'features__word__min_df': 2}
+2026-11-06 17:39:08,883 INFO __main__: linear_svm: OOF recall=0.9630 fpr=0.0042 params={'clf__estimator__C': 3.0, 'features__word__min_df': 1}
+2026-11-06 17:39:30,224 INFO __main__: random_forest: OOF recall=0.9280 fpr=0.0050 params={'clf__n_estimators': 200, 'features__word__min_df': 1}
+2026-11-06 17:39:30,225 INFO __main__: Selected model: linear_svm
+{
+  "selected_model": "linear_svm",
+  "threshold": 0.3462909856783121,
+  "test": {
+    "threshold": 0.3462909856783121,
+    "precision": 0.9689922480620154,
+    "recall": 0.9765625,
+    "f1": 0.9727626459143969,
+    "pr_auc": 0.9955300394899037,
+    "roc_auc": 0.9992308490044248,
+    "ham_fpr": 0.004424778761061947,
+    "tn": 900,
+    "fp": 4,
+    "fn": 3,
+    "tp": 125
+  }
+}

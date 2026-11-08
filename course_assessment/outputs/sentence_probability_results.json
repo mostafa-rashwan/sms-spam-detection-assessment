@@ -1,0 +1,406 @@
+{
+  "dataset": {
+    "seed": 42,
+    "test_size": 0.2,
+    "parsed_rows": 5574,
+    "cleaning": {
+      "rows_in": 5574,
+      "empty_dropped": 0,
+      "duplicates_dropped": 414,
+      "rows_out": 5160,
+      "spam": 642,
+      "ham": 4518
+    },
+    "train_messages": 4128,
+    "heldout_messages": 1032
+  },
+  "training_statistics": {
+    "training_messages": 4128,
+    "sentences_after_segmentation": 7782,
+    "sentences_empty_after_normalization": 316,
+    "sentences_used_for_training": 7466
+  },
+  "model": {
+    "vocabulary_size_V": 5818,
+    "distinct_training_words": 5816,
+    "training_sentences": 7466,
+    "count_of_start_symbol": 7466,
+    "number_of_distinct_bigrams": 26408,
+    "start_symbol": "<s>",
+    "end_symbol": "</s>"
+  },
+  "sentences": [
+    {
+      "row_id": 1444,
+      "label": "ham",
+      "original_message": "How are you with moneY...as in to you...money aint a thing....how are you sha!",
+      "sentence": "how are you with money...as in to you...money aint a thing....how are you sha!",
+      "normalized_tokens": [
+        "money",
+        "money",
+        "aint",
+        "thing",
+        "sha"
+      ],
+      "ngrams": {
+        "unigrams": [
+          "<s>",
+          "money",
+          "money",
+          "aint",
+          "thing",
+          "sha",
+          "</s>"
+        ],
+        "bigrams": [
+          "<s> money",
+          "money money",
+          "money aint",
+          "aint thing",
+          "thing sha",
+          "sha </s>"
+        ],
+        "trigrams": [
+          "<s> money money",
+          "money money aint",
+          "money aint thing",
+          "aint thing sha",
+          "thing sha </s>"
+        ]
+      },
+      "calculation": {
+        "tokens": [
+          "money",
+          "money",
+          "aint",
+          "thing",
+          "sha"
+        ],
+        "tokens_after_unk_replacement": [
+          "money",
+          "money",
+          "aint",
+          "thing",
+          "sha"
+        ],
+        "unseen_words_replaced": [],
+        "padded_sentence": [
+          "<s>",
+          "money",
+          "money",
+          "aint",
+          "thing",
+          "sha",
+          "</s>"
+        ],
+        "steps": [
+          {
+            "previous_word": "<s>",
+            "current_word": "money",
+            "bigram_count": 6,
+            "previous_word_count": 7466,
+            "numerator": 7,
+            "denominator": 13284,
+            "vocabulary_size": 5818,
+            "probability": 0.0005269497139415839,
+            "running_product": 0.0005269497139415839
+          },
+          {
+            "previous_word": "money",
+            "current_word": "money",
+            "bigram_count": 1,
+            "previous_word_count": 46,
+            "numerator": 2,
+            "denominator": 5864,
+            "vocabulary_size": 5818,
+            "probability": 0.00034106412005457026,
+            "running_product": 1.797236404984938e-07
+          },
+          {
+            "previous_word": "money",
+            "current_word": "aint",
+            "bigram_count": 0,
+            "previous_word_count": 46,
+            "numerator": 1,
+            "denominator": 5864,
+            "vocabulary_size": 5818,
+            "probability": 0.00017053206002728513,
+            "running_product": 3.064864264981136e-11
+          },
+          {
+            "previous_word": "aint",
+            "current_word": "thing",
+            "bigram_count": 0,
+            "previous_word_count": 4,
+            "numerator": 1,
+            "denominator": 5822,
+            "vocabulary_size": 5818,
+            "probability": 0.00017176228100309173,
+            "running_product": 5.26428077118024e-15
+          },
+          {
+            "previous_word": "thing",
+            "current_word": "sha",
+            "bigram_count": 0,
+            "previous_word_count": 95,
+            "numerator": 1,
+            "denominator": 5913,
+            "vocabulary_size": 5818,
+            "probability": 0.00016911889058007779,
+            "running_product": 8.902893237240386e-19
+          },
+          {
+            "previous_word": "sha",
+            "current_word": "</s>",
+            "bigram_count": 0,
+            "previous_word_count": 2,
+            "numerator": 1,
+            "denominator": 5820,
+            "vocabulary_size": 5818,
+            "probability": 0.0001718213058419244,
+            "running_product": 1.5297067417938809e-22
+          }
+        ],
+        "probability": 1.5297067417938809e-22,
+        "log_probability": -50.23179600086624,
+        "probability_from_log": 1.5297067417938743e-22
+      }
+    },
+    {
+      "row_id": 4322,
+      "label": "ham",
+      "original_message": "Only saturday and sunday holiday so its very difficult:)",
+      "sentence": "only saturday and sunday holiday so its very difficult:)",
+      "normalized_tokens": [
+        "saturday",
+        "sunday",
+        "holiday",
+        "difficult"
+      ],
+      "ngrams": {
+        "unigrams": [
+          "<s>",
+          "saturday",
+          "sunday",
+          "holiday",
+          "difficult",
+          "</s>"
+        ],
+        "bigrams": [
+          "<s> saturday",
+          "saturday sunday",
+          "sunday holiday",
+          "holiday difficult",
+          "difficult </s>"
+        ],
+        "trigrams": [
+          "<s> saturday sunday",
+          "saturday sunday holiday",
+          "sunday holiday difficult",
+          "holiday difficult </s>"
+        ]
+      },
+      "calculation": {
+        "tokens": [
+          "saturday",
+          "sunday",
+          "holiday",
+          "difficult"
+        ],
+        "tokens_after_unk_replacement": [
+          "saturday",
+          "sunday",
+          "holiday",
+          "difficult"
+        ],
+        "unseen_words_replaced": [],
+        "padded_sentence": [
+          "<s>",
+          "saturday",
+          "sunday",
+          "holiday",
+          "difficult",
+          "</s>"
+        ],
+        "steps": [
+          {
+            "previous_word": "<s>",
+            "current_word": "saturday",
+            "bigram_count": 0,
+            "previous_word_count": 7466,
+            "numerator": 1,
+            "denominator": 13284,
+            "vocabulary_size": 5818,
+            "probability": 7.527853056308341e-05,
+            "running_product": 7.527853056308341e-05
+          },
+          {
+            "previous_word": "saturday",
+            "current_word": "sunday",
+            "bigram_count": 1,
+            "previous_word_count": 11,
+            "numerator": 2,
+            "denominator": 5829,
+            "vocabulary_size": 5818,
+            "probability": 0.00034311202607651396,
+            "running_product": 2.582896914156233e-08
+          },
+          {
+            "previous_word": "sunday",
+            "current_word": "holiday",
+            "bigram_count": 0,
+            "previous_word_count": 4,
+            "numerator": 1,
+            "denominator": 5822,
+            "vocabulary_size": 5818,
+            "probability": 0.00017176228100309173,
+            "running_product": 4.436442655713214e-12
+          },
+          {
+            "previous_word": "holiday",
+            "current_word": "difficult",
+            "bigram_count": 0,
+            "previous_word_count": 33,
+            "numerator": 1,
+            "denominator": 5851,
+            "vocabulary_size": 5818,
+            "probability": 0.00017091095539224064,
+            "running_product": 7.582366528308347e-16
+          },
+          {
+            "previous_word": "difficult",
+            "current_word": "</s>",
+            "bigram_count": 2,
+            "previous_word_count": 7,
+            "numerator": 3,
+            "denominator": 5825,
+            "vocabulary_size": 5818,
+            "probability": 0.0005150214592274678,
+            "running_product": 3.9050814738068746e-19
+          }
+        ],
+        "probability": 3.9050814738068746e-19,
+        "log_probability": -42.38683811984184,
+        "probability_from_log": 3.9050814738068636e-19
+      }
+    },
+    {
+      "row_id": 3229,
+      "label": "spam",
+      "original_message": "Freemsg: 1-month unlimited free calls! Activate SmartCall Txt: CALL to No: 68866. Subscriptn3gbp/wk unlimited calls Help: 08448714184 Stop?txt stop landlineonly",
+      "sentence": "freemsg: 1-month unlimited free calls!",
+      "normalized_tokens": [
+        "freemsg",
+        "unlimit",
+        "free",
+        "call"
+      ],
+      "ngrams": {
+        "unigrams": [
+          "<s>",
+          "freemsg",
+          "unlimit",
+          "free",
+          "call",
+          "</s>"
+        ],
+        "bigrams": [
+          "<s> freemsg",
+          "freemsg unlimit",
+          "unlimit free",
+          "free call",
+          "call </s>"
+        ],
+        "trigrams": [
+          "<s> freemsg unlimit",
+          "freemsg unlimit free",
+          "unlimit free call",
+          "free call </s>"
+        ]
+      },
+      "calculation": {
+        "tokens": [
+          "freemsg",
+          "unlimit",
+          "free",
+          "call"
+        ],
+        "tokens_after_unk_replacement": [
+          "freemsg",
+          "unlimit",
+          "free",
+          "call"
+        ],
+        "unseen_words_replaced": [],
+        "padded_sentence": [
+          "<s>",
+          "freemsg",
+          "unlimit",
+          "free",
+          "call",
+          "</s>"
+        ],
+        "steps": [
+          {
+            "previous_word": "<s>",
+            "current_word": "freemsg",
+            "bigram_count": 11,
+            "previous_word_count": 7466,
+            "numerator": 12,
+            "denominator": 13284,
+            "vocabulary_size": 5818,
+            "probability": 0.0009033423667570009,
+            "running_product": 0.0009033423667570009
+          },
+          {
+            "previous_word": "freemsg",
+            "current_word": "unlimit",
+            "bigram_count": 0,
+            "previous_word_count": 11,
+            "numerator": 1,
+            "denominator": 5829,
+            "vocabulary_size": 5818,
+            "probability": 0.00017155601303825698,
+            "running_product": 1.5497381484937397e-07
+          },
+          {
+            "previous_word": "unlimit",
+            "current_word": "free",
+            "bigram_count": 0,
+            "previous_word_count": 9,
+            "numerator": 1,
+            "denominator": 5827,
+            "vocabulary_size": 5818,
+            "probability": 0.00017161489617298782,
+            "running_product": 2.6595815144907152e-11
+          },
+          {
+            "previous_word": "free",
+            "current_word": "call",
+            "bigram_count": 9,
+            "previous_word_count": 192,
+            "numerator": 10,
+            "denominator": 6010,
+            "vocabulary_size": 5818,
+            "probability": 0.0016638935108153079,
+            "running_product": 4.4252604234454496e-14
+          },
+          {
+            "previous_word": "call",
+            "current_word": "</s>",
+            "bigram_count": 112,
+            "previous_word_count": 431,
+            "numerator": 113,
+            "denominator": 6249,
+            "vocabulary_size": 5818,
+            "probability": 0.01808289326292207,
+            "running_product": 8.002151189779738e-16
+          }
+        ],
+        "probability": 8.002151189779738e-16,
+        "log_probability": -34.76165108364921,
+        "probability_from_log": 8.002151189779713e-16
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Extra dependency for the course assessment. The project's own requirements
+# (pandas, scikit-learn, PyYAML, ...) are reused from the repository root.
+-r ../requirements.txt
+nltk>=3.8
+pytest>=8

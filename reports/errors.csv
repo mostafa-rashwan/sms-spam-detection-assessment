@@ -1,0 +1,8 @@
+text,label,pred,spam_probability,error
+dating:i have had two of these. Only started after i sent a text to talk sport radio last week. Any connection do you think or coincidence?,1,0,0.037925546943886244,false_negative
+"Hi this is Amy, we will be sending you a free phone number in a couple of days, which will give you an access to all the adult parties...",1,0,0.05807300556673586,false_negative
+thesmszone.com lets you send free anonymous and masked messages..im sending this message from there..do you see the potential for abuse???,1,0,0.24500849150799794,false_negative
+"Please protect yourself from e-threats. SIB never asks for sensitive information like Passwords,ATM/SMS PIN thru email. Never share your password with anybody.",0,1,0.373101697839632,false_positive
+I (Career Tel) have added u as a contact on INDYAROCKS.COM to send FREE SMS. To remove from phonebook - sms NO to  &lt;#&gt;,0,1,0.48305159353615673,false_positive
+Glad to see your reply.,0,1,0.5224372303451562,false_positive
+Your bill at 3 is £33.65 so thats not bad!,0,1,0.9016416611280791,false_positive

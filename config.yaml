@@ -1,0 +1,39 @@
+seed: 42
+test_size: 0.2
+cv_folds: 5
+max_ham_fpr: 0.005
+
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  models_dir: models
+  reports_dir: reports
+
+dataset:
+  url: https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip
+  member: SMSSpamCollection
+  expected_rows: 5574
+
+preprocess:
+  remove_stopwords: false
+  stem: false
+
+features:
+  word_ngram: [1, 2]
+  char_ngram: [2, 5]
+  use_char: true
+  use_meta: false
+
+inference:
+  max_length: 1000        # longer messages are rejected with ValueError
+
+grids:
+  min_df: [1, 2]
+  multinomial_nb: { alpha: [0.05, 0.1, 0.5, 1.0] }
+  complement_nb: { alpha: [0.05, 0.1, 0.5, 1.0] }
+  logreg: { C: [1.0, 10.0, 30.0] }
+  linear_svm: { C: [0.3, 1.0, 3.0] }
+  random_forest: { n_estimators: [200] }
+
+candidates: [multinomial_nb, complement_nb, logreg, linear_svm, random_forest]
+ablation: true

@@ -1,0 +1,761 @@
+{
+  "dataset": {
+    "seed": 42,
+    "test_size": 0.2,
+    "parsed_rows": 5574,
+    "cleaning": {
+      "rows_in": 5574,
+      "empty_dropped": 0,
+      "duplicates_dropped": 414,
+      "rows_out": 5160,
+      "spam": 642,
+      "ham": 4518
+    },
+    "train_messages": 4128,
+    "heldout_messages": 1032
+  },
+  "note": "All examples are ACTUAL records of the SMS Spam Collection (training split).",
+  "stage_descriptions": {
+    "lowercasing": {
+      "function": "lowercase_text",
+      "why": "Makes 'Free', 'FREE' and 'free' the same word so counts are not split."
+    },
+    "sentence_segmentation": {
+      "function": "segment_sentences",
+      "why": "Splits a message into sentences; the language model works sentence by sentence."
+    },
+    "word_tokenization": {
+      "function": "tokenize_words",
+      "why": "Splits a sentence into word and punctuation tokens that can be filtered/counted."
+    },
+    "punctuation_removal": {
+      "function": "remove_punctuation",
+      "why": "Punctuation marks carry little lexical meaning for a word-level model."
+    },
+    "number_removal": {
+      "function": "remove_numbers",
+      "why": "Numbers (prices, phone numbers, short codes) are mostly unique and sparse tokens."
+    },
+    "stop_word_removal": {
+      "function": "remove_stop_words",
+      "why": "Very frequent function words ('the', 'to', 'you') add little content information."
+    },
+    "porter_stemming": {
+      "function": "stem_tokens",
+      "why": "Reduces inflected forms ('winning', 'wins') to a common stem to reduce sparsity."
+    }
+  },
+  "demonstration_messages": [
+    {
+      "original_message": "You're right I have now that I think about it",
+      "lowercasing": "you're right i have now that i think about it",
+      "sentence_segmentation": [
+        "you're right i have now that i think about it"
+      ],
+      "number_of_sentences": 1,
+      "sentence_traces": [
+        {
+          "sentence": "you're right i have now that i think about it",
+          "word_tokenization": [
+            "you",
+            "'re",
+            "right",
+            "i",
+            "have",
+            "now",
+            "that",
+            "i",
+            "think",
+            "about",
+            "it"
+          ],
+          "punctuation_removal": [
+            "you",
+            "'re",
+            "right",
+            "i",
+            "have",
+            "now",
+            "that",
+            "i",
+            "think",
+            "about",
+            "it"
+          ],
+          "number_removal": [
+            "you",
+            "'re",
+            "right",
+            "i",
+            "have",
+            "now",
+            "that",
+            "i",
+            "think",
+            "about",
+            "it"
+          ],
+          "stop_word_removal": [
+            "'re",
+            "right",
+            "think"
+          ],
+          "porter_stemming": [
+            "'re",
+            "right",
+            "think"
+          ],
+          "removed_as_punctuation": [],
+          "removed_as_numbers": [],
+          "removed_as_stop_words": [
+            "you",
+            "i",
+            "have",
+            "now",
+            "that",
+            "i",
+            "about",
+            "it"
+          ],
+          "stem_changes": {},
+          "final_tokens": [
+            "'re",
+            "right",
+            "think"
+          ]
+        }
+      ],
+      "row_id": 2972,
+      "label": "ham",
+      "selection_rule": "ham, one sentence, 8-15 words"
+    },
+    {
+      "original_message": "5p 4 alfie Moon's Children in need song on ur mob. Tell ur m8s. Txt Tone charity to 8007 for Nokias or Poly charity for polys: zed 08701417012 profit 2 charity.",
+      "lowercasing": "5p 4 alfie moon's children in need song on ur mob. tell ur m8s. txt tone charity to 8007 for nokias or poly charity for polys: zed 08701417012 profit 2 charity.",
+      "sentence_segmentation": [
+        "5p 4 alfie moon's children in need song on ur mob.",
+        "tell ur m8s.",
+        "txt tone charity to 8007 for nokias or poly charity for polys: zed 08701417012 profit 2 charity."
+      ],
+      "number_of_sentences": 3,
+      "sentence_traces": [
+        {
+          "sentence": "5p 4 alfie moon's children in need song on ur mob.",
+          "word_tokenization": [
+            "5p",
+            "4",
+            "alfie",
+            "moon",
+            "'s",
+            "children",
+            "in",
+            "need",
+            "song",
+            "on",
+            "ur",
+            "mob",
+            "."
+          ],
+          "punctuation_removal": [
+            "5p",
+            "4",
+            "alfie",
+            "moon",
+            "'s",
+            "children",
+            "in",
+            "need",
+            "song",
+            "on",
+            "ur",
+            "mob"
+          ],
+          "number_removal": [
+            "alfie",
+            "moon",
+            "'s",
+            "children",
+            "in",
+            "need",
+            "song",
+            "on",
+            "ur",
+            "mob"
+          ],
+          "stop_word_removal": [
+            "alfie",
+            "moon",
+            "'s",
+            "children",
+            "need",
+            "song",
+            "ur",
+            "mob"
+          ],
+          "porter_stemming": [
+            "alfi",
+            "moon",
+            "'s",
+            "children",
+            "need",
+            "song",
+            "ur",
+            "mob"
+          ],
+          "removed_as_punctuation": [
+            "."
+          ],
+          "removed_as_numbers": [
+            "5p",
+            "4"
+          ],
+          "removed_as_stop_words": [
+            "in",
+            "on"
+          ],
+          "stem_changes": {
+            "alfie": "alfi"
+          },
+          "final_tokens": [
+            "alfi",
+            "moon",
+            "'s",
+            "children",
+            "need",
+            "song",
+            "ur",
+            "mob"
+          ]
+        },
+        {
+          "sentence": "tell ur m8s.",
+          "word_tokenization": [
+            "tell",
+            "ur",
+            "m8s",
+            "."
+          ],
+          "punctuation_removal": [
+            "tell",
+            "ur",
+            "m8s"
+          ],
+          "number_removal": [
+            "tell",
+            "ur"
+          ],
+          "stop_word_removal": [
+            "tell",
+            "ur"
+          ],
+          "porter_stemming": [
+            "tell",
+            "ur"
+          ],
+          "removed_as_punctuation": [
+            "."
+          ],
+          "removed_as_numbers": [
+            "m8s"
+          ],
+          "removed_as_stop_words": [],
+          "stem_changes": {},
+          "final_tokens": [
+            "tell",
+            "ur"
+          ]
+        },
+        {
+          "sentence": "txt tone charity to 8007 for nokias or poly charity for polys: zed 08701417012 profit 2 charity.",
+          "word_tokenization": [
+            "txt",
+            "tone",
+            "charity",
+            "to",
+            "8007",
+            "for",
+            "nokias",
+            "or",
+            "poly",
+            "charity",
+            "for",
+            "polys",
+            ":",
+            "zed",
+            "08701417012",
+            "profit",
+            "2",
+            "charity",
+            "."
+          ],
+          "punctuation_removal": [
+            "txt",
+            "tone",
+            "charity",
+            "to",
+            "8007",
+            "for",
+            "nokias",
+            "or",
+            "poly",
+            "charity",
+            "for",
+            "polys",
+            "zed",
+            "08701417012",
+            "profit",
+            "2",
+            "charity"
+          ],
+          "number_removal": [
+            "txt",
+            "tone",
+            "charity",
+            "to",
+            "for",
+            "nokias",
+            "or",
+            "poly",
+            "charity",
+            "for",
+            "polys",
+            "zed",
+            "profit",
+            "charity"
+          ],
+          "stop_word_removal": [
+            "txt",
+            "tone",
+            "charity",
+            "nokias",
+            "poly",
+            "charity",
+            "polys",
+            "zed",
+            "profit",
+            "charity"
+          ],
+          "porter_stemming": [
+            "txt",
+            "tone",
+            "chariti",
+            "nokia",
+            "poli",
+            "chariti",
+            "poli",
+            "zed",
+            "profit",
+            "chariti"
+          ],
+          "removed_as_punctuation": [
+            ":",
+            "."
+          ],
+          "removed_as_numbers": [
+            "8007",
+            "08701417012",
+            "2"
+          ],
+          "removed_as_stop_words": [
+            "to",
+            "for",
+            "or",
+            "for"
+          ],
+          "stem_changes": {
+            "charity": "chariti",
+            "nokias": "nokia",
+            "poly": "poli",
+            "polys": "poli"
+          },
+          "final_tokens": [
+            "txt",
+            "tone",
+            "chariti",
+            "nokia",
+            "poli",
+            "chariti",
+            "poli",
+            "zed",
+            "profit",
+            "chariti"
+          ]
+        }
+      ],
+      "row_id": 4719,
+      "label": "spam",
+      "selection_rule": "spam, two or more sentences, contains a digit"
+    },
+    {
+      "original_message": "Infact happy new year. How are you where are you when are we seeing",
+      "lowercasing": "infact happy new year. how are you where are you when are we seeing",
+      "sentence_segmentation": [
+        "infact happy new year.",
+        "how are you where are you when are we seeing"
+      ],
+      "number_of_sentences": 2,
+      "sentence_traces": [
+        {
+          "sentence": "infact happy new year.",
+          "word_tokenization": [
+            "infact",
+            "happy",
+            "new",
+            "year",
+            "."
+          ],
+          "punctuation_removal": [
+            "infact",
+            "happy",
+            "new",
+            "year"
+          ],
+          "number_removal": [
+            "infact",
+            "happy",
+            "new",
+            "year"
+          ],
+          "stop_word_removal": [
+            "infact",
+            "happy",
+            "new",
+            "year"
+          ],
+          "porter_stemming": [
+            "infact",
+            "happi",
+            "new",
+            "year"
+          ],
+          "removed_as_punctuation": [
+            "."
+          ],
+          "removed_as_numbers": [],
+          "removed_as_stop_words": [],
+          "stem_changes": {
+            "happy": "happi"
+          },
+          "final_tokens": [
+            "infact",
+            "happi",
+            "new",
+            "year"
+          ]
+        },
+        {
+          "sentence": "how are you where are you when are we seeing",
+          "word_tokenization": [
+            "how",
+            "are",
+            "you",
+            "where",
+            "are",
+            "you",
+            "when",
+            "are",
+            "we",
+            "seeing"
+          ],
+          "punctuation_removal": [
+            "how",
+            "are",
+            "you",
+            "where",
+            "are",
+            "you",
+            "when",
+            "are",
+            "we",
+            "seeing"
+          ],
+          "number_removal": [
+            "how",
+            "are",
+            "you",
+            "where",
+            "are",
+            "you",
+            "when",
+            "are",
+            "we",
+            "seeing"
+          ],
+          "stop_word_removal": [
+            "seeing"
+          ],
+          "porter_stemming": [
+            "see"
+          ],
+          "removed_as_punctuation": [],
+          "removed_as_numbers": [],
+          "removed_as_stop_words": [
+            "how",
+            "are",
+            "you",
+            "where",
+            "are",
+            "you",
+            "when",
+            "are",
+            "we"
+          ],
+          "stem_changes": {
+            "seeing": "see"
+          },
+          "final_tokens": [
+            "see"
+          ]
+        }
+      ],
+      "row_id": 3884,
+      "label": "ham",
+      "selection_rule": "ham, two or more sentences"
+    }
+  ],
+  "training_corpus_statistics": {
+    "training_messages": 4128,
+    "sentences_after_segmentation": 7782,
+    "sentences_empty_after_normalization": 316,
+    "sentences_used_for_training": 7466,
+    "training_tokens": 36324,
+    "training_word_types": 5816,
+    "most_common_20": [
+      [
+        "u",
+        797
+      ],
+      [
+        "call",
+        431
+      ],
+      [
+        "'s",
+        377
+      ],
+      [
+        "go",
+        353
+      ],
+      [
+        "get",
+        347
+      ],
+      [
+        "'m",
+        309
+      ],
+      [
+        "n't",
+        286
+      ],
+      [
+        "ur",
+        254
+      ],
+      [
+        "come",
+        222
+      ],
+      [
+        "gt",
+        219
+      ],
+      [
+        "lt",
+        217
+      ],
+      [
+        "know",
+        206
+      ],
+      [
+        "like",
+        199
+      ],
+      [
+        "free",
+        192
+      ],
+      [
+        "want",
+        191
+      ],
+      [
+        "got",
+        185
+      ],
+      [
+        "ok",
+        184
+      ],
+      [
+        "good",
+        179
+      ],
+      [
+        "time",
+        178
+      ],
+      [
+        "love",
+        176
+      ]
+    ]
+  },
+  "stemming_vs_lemmatization_illustration": {
+    "available": true,
+    "rows": [
+      {
+        "token": "'re",
+        "porter_stem": "'re",
+        "lemma_as_noun": "'re",
+        "lemma_as_verb": "'re"
+      },
+      {
+        "token": "right",
+        "porter_stem": "right",
+        "lemma_as_noun": "right",
+        "lemma_as_verb": "right"
+      },
+      {
+        "token": "think",
+        "porter_stem": "think",
+        "lemma_as_noun": "think",
+        "lemma_as_verb": "think"
+      },
+      {
+        "token": "alfie",
+        "porter_stem": "alfi",
+        "lemma_as_noun": "alfie",
+        "lemma_as_verb": "alfie"
+      },
+      {
+        "token": "moon",
+        "porter_stem": "moon",
+        "lemma_as_noun": "moon",
+        "lemma_as_verb": "moon"
+      },
+      {
+        "token": "'s",
+        "porter_stem": "'s",
+        "lemma_as_noun": "'s",
+        "lemma_as_verb": "'s"
+      },
+      {
+        "token": "children",
+        "porter_stem": "children",
+        "lemma_as_noun": "child",
+        "lemma_as_verb": "children"
+      },
+      {
+        "token": "need",
+        "porter_stem": "need",
+        "lemma_as_noun": "need",
+        "lemma_as_verb": "need"
+      },
+      {
+        "token": "song",
+        "porter_stem": "song",
+        "lemma_as_noun": "song",
+        "lemma_as_verb": "song"
+      },
+      {
+        "token": "ur",
+        "porter_stem": "ur",
+        "lemma_as_noun": "ur",
+        "lemma_as_verb": "ur"
+      },
+      {
+        "token": "mob",
+        "porter_stem": "mob",
+        "lemma_as_noun": "mob",
+        "lemma_as_verb": "mob"
+      },
+      {
+        "token": "tell",
+        "porter_stem": "tell",
+        "lemma_as_noun": "tell",
+        "lemma_as_verb": "tell"
+      },
+      {
+        "token": "txt",
+        "porter_stem": "txt",
+        "lemma_as_noun": "txt",
+        "lemma_as_verb": "txt"
+      },
+      {
+        "token": "tone",
+        "porter_stem": "tone",
+        "lemma_as_noun": "tone",
+        "lemma_as_verb": "tone"
+      },
+      {
+        "token": "charity",
+        "porter_stem": "chariti",
+        "lemma_as_noun": "charity",
+        "lemma_as_verb": "charity"
+      },
+      {
+        "token": "nokias",
+        "porter_stem": "nokia",
+        "lemma_as_noun": "nokias",
+        "lemma_as_verb": "nokias"
+      },
+      {
+        "token": "poly",
+        "porter_stem": "poli",
+        "lemma_as_noun": "poly",
+        "lemma_as_verb": "poly"
+      },
+      {
+        "token": "polys",
+        "porter_stem": "poli",
+        "lemma_as_noun": "polys",
+        "lemma_as_verb": "polys"
+      },
+      {
+        "token": "zed",
+        "porter_stem": "zed",
+        "lemma_as_noun": "zed",
+        "lemma_as_verb": "zed"
+      },
+      {
+        "token": "profit",
+        "porter_stem": "profit",
+        "lemma_as_noun": "profit",
+        "lemma_as_verb": "profit"
+      },
+      {
+        "token": "infact",
+        "porter_stem": "infact",
+        "lemma_as_noun": "infact",
+        "lemma_as_verb": "infact"
+      },
+      {
+        "token": "happy",
+        "porter_stem": "happi",
+        "lemma_as_noun": "happy",
+        "lemma_as_verb": "happy"
+      },
+      {
+        "token": "new",
+        "porter_stem": "new",
+        "lemma_as_noun": "new",
+        "lemma_as_verb": "new"
+      },
+      {
+        "token": "year",
+        "porter_stem": "year",
+        "lemma_as_noun": "year",
+        "lemma_as_verb": "year"
+      },
+      {
+        "token": "seeing",
+        "porter_stem": "see",
+        "lemma_as_noun": "seeing",
+        "lemma_as_verb": "see"
+      }
+    ]
+  }
+}
